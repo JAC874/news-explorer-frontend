@@ -25,12 +25,20 @@
   color: white;
 }
 
+.nav__home-btn:hover {
+  cursor: pointer;
+}
+
 .nav__saved-articles-btn {
   border: none;
   background-color: transparent;
   width: 160px;
   padding: 0;
   color: white;
+}
+
+.nav__saved-articles-btn:hover {
+  cursor: pointer;
 }
 
 .nav__sign-in-btn {
@@ -42,6 +50,10 @@
   color: white;
 }
 
+.nav__sign-in-btn:hover:hover {
+  cursor: pointer;
+}
+
 .nav__user-btn {
   border: 1px solid white;
   height: 40px;
@@ -51,7 +63,14 @@
   color: white;
 }
 
+.nav__user-btn:hover {
+  cursor: pointer;
+}
+
 .nav_logo {
   border: none;
   margin: 0;
+  font-family: "RobotoSlab-Bold";
+  font-size: 20px;
+  line-height: 24px;
 }
