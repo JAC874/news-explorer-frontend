@@ -1,8 +1,37 @@
-.header__nav-container {
-  background-color: cadetblue;
+.header {
+  background-image: url("../../assets/header-background.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 576px;
 }
 
-.header_title {
-  border: none;
+.header__nav-container {
+  /* background-color: cadetblue; */
+}
+
+.header__text-container {
+  margin: 0 auto;
+  max-width: 608px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.header__title {
+  font-family: "RobotoSlab-Medium", Arial, sans-serif;
+  font-size: 60px;
+  line-height: 64px;
   margin: 0;
+  padding-top: 80px;
+  font-weight: 400;
+}
+
+.header__sub-title {
+  font-family: "Roboto-Regular", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0;
+  padding-top: 32px;
+  font-weight: 400;
 }

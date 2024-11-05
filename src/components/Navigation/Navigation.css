@@ -6,11 +6,11 @@
   position: relative;
   padding: 0 104px 0 104px;
   justify-content: space-between;
-  font-family: "Roboto-Bold";
+  font-family: "Roboto-Bold", Arial, sans-serif;
   font-size: 18px;
   line-height: 24px;
   color: white;
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid #ffffff;
 }
 
 .nav__buttons {
@@ -48,6 +48,7 @@
   background-color: transparent;
   width: 176px;
   color: white;
+  padding: 0;
 }
 
 .nav__sign-in-btn:hover:hover {
@@ -61,6 +62,7 @@
   background-color: transparent;
   width: 112px;
   color: white;
+  padding: 0;
 }
 
 .nav__user-btn:hover {
@@ -70,7 +72,7 @@
 .nav_logo {
   border: none;
   margin: 0;
-  font-family: "RobotoSlab-Bold";
+  font-family: "RobotoSlab-Bold", Arial, sans-serif;
   font-size: 20px;
   line-height: 24px;
 }

@@ -23,3 +23,9 @@ function Navigation() {
 }
 
 export default Navigation;
+
+
+// later refactor into split components:
+// Nav-Logged-in and Nav-Logged-Out
+
+// add highlight bar (focus), how do I do that??

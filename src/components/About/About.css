@@ -1,0 +1,23 @@
+.about {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  gap: 56px;
+  padding: 80px 216px 80px 104px;
+  align-items: center;
+}
+
+.about__selfie-container {
+  height: 464px;
+  width: 464px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.about__selfie {
+  height: 110%;
+  width: 110%;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: -5%;
+}
