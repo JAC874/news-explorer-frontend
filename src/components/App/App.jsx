@@ -4,6 +4,7 @@ import "./App.css";
 
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
+import LoginModal from "../LoginModal/LoginModal";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         </Routes>
         <Footer />
       </div>
+      <LoginModal />
     </div>
   );
 }
