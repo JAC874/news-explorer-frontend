@@ -4,7 +4,7 @@
   justify-content: center;
   gap: 56px;
   padding: 80px 216px 80px 104px;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .about__selfie-container {
@@ -20,4 +20,28 @@
   border-radius: 50%;
   object-fit: cover;
   margin: -5%;
+}
+
+.about__title {
+  font-family: "RobotoSlab-Medium", sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 46px;
+  text-align: left;
+  margin-bottom: 0;
+  margin-top: 51px;
+  padding: 0;
+}
+
+.about__text {
+  padding-top: 10px;
+  font-family: "Roboto-Regular";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  max-width: 600px;
+  margin-top: 24px;
+  margin-bottom: 0;
+  padding: 0;
 }
