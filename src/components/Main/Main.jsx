@@ -2,10 +2,10 @@ import Header from "../Header/Header";
 import About from "../About/About";
 import NewsCardList from "../NewsCardList/NewsCardList";
 
-function Main() {
+function Main({ handleLoginClick }) {
   return (
     <main>
-      <Header />
+      <Header handleLoginClick={handleLoginClick} />
       <NewsCardList />
       <About />
     </main>

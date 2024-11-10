@@ -1,11 +1,14 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal() {
+function LoginModal({ onClose, isOpen, setActiveModal, isLoading }) {
   return (
     <ModalWithForm
-      title="Sign up"
-      buttonText={"Sign in"}
-      altButtonTxt={"Sign Up"}
+      title="Sign in"
+      buttonText={isLoading ? "Signing In" : "Sign in"}
+      altButtonTxt={"Sign up"}
+      onClose={onClose}
+      isOpen={isOpen}
+      altButtonClick={() => setActiveModal("register")}
     >
       <label htmlFor="email-login" className="modal__label">
         Email{" "}

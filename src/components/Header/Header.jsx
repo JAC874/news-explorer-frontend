@@ -2,11 +2,11 @@ import "./Header.css";
 import Navigation from "../Navigation/Navigation";
 import SearchForm from "../SearchForm/SearchForm";
 
-function Header() {
+function Header({ handleLoginClick }) {
   return (
     <header className="header">
       <div className="header__nav-container">
-        <Navigation />
+        <Navigation handleLoginClick={handleLoginClick} />
       </div>
       <div className="header__text-container">
         <h1 className="header__title">What's going on in the world?</h1>
