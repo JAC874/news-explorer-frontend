@@ -7,6 +7,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import SavedNews from "../SavedNews/SavedNews";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -47,6 +48,7 @@ function App() {
               />
             }
           ></Route>
+          <Route path="/saved-news" element={<SavedNews />}></Route>
         </Routes>
         <Footer />
       </div>
