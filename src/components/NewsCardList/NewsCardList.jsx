@@ -2,8 +2,11 @@ import "../NewsCardList/NewsCardList.css";
 
 import notFound from "../../assets/not-found-img.svg";
 import Preloader from "../Preloader/Preloader";
+import NewsCard from "../NewsCard/NewsCard";
 
-function NewsCardList() {
+import { articleData } from "../../utils/stubResponse"; // Import the article data
+
+function NewsCardList({ isLoggedIn }) {
   return (
     <section className="news-card-list">
       {/* NOT FOUND */}
@@ -28,7 +31,11 @@ function NewsCardList() {
       </div>
       <h2 className="news-card-list__title">Search results</h2>
       <div className="news-card-list__container">
-        <ul className="news-card-list__list">NEWS CARDS</ul>
+        <ul className="news-card-list__list">
+          {articleData.article.map((article, index) => (
+            <NewsCard key={index} isLoggedIn={isLoggedIn} article={article} />
+          ))}
+        </ul>
       </div>
       <button className="news-card-list__more-btn">Show more</button>
     </section>

@@ -4,9 +4,9 @@
   margin: 0 auto;
 }
 
-/* .news-card-list_hidden {
+.news-card-list_hidden {
   display: none;
-} */
+}
 
 .news-card-list__list {
   margin: 0;
