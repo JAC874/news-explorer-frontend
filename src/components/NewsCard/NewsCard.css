@@ -100,7 +100,7 @@
   display: none;
 }
 
-.news-card__save {
+.news-card__save-btn {
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -115,11 +115,11 @@
   padding: 0;
 }
 
-.news-card__save:hover {
+.news-card__save-btn:hover {
   background-image: url("../../assets/save-icon-hover.svg");
 }
 
-.news-card__save_active {
+.news-card__save-btn_active {
   background-image: url("../../assets/save-icon-marked.svg");
 }
 
@@ -158,7 +158,7 @@
   width: 182px;
   color: #000;
   background-color: #fff;
-  font-family: "Roboto-500";
+  font-family: "Roboto-Bold";
   font-size: 12px;
   font-weight: 500;
   line-height: 40px;

@@ -66,9 +66,9 @@
   padding-top: 86px;
 }
 
-/* .news-card-list__not-found_hidden {
+.news-card-list__not-found_hidden {
   display: none;
-} */
+}
 
 .news-card-list__not-found-icon {
   height: 82.5px;
