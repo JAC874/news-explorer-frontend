@@ -8,10 +8,16 @@ import Footer from "../Footer/Footer";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import SavedNews from "../SavedNews/SavedNews";
+import { articleData } from "../../utils/stubResponse"; // Import the stub data
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState("");
+  const [newsData, setNewsData] = useState([]);
+  const [isSuccessNewsData, setIsSuccessNewsData] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [currentKeyword, setCurrentKeyword] = useState("");
 
   const navigate = useNavigate();
 
@@ -29,13 +35,6 @@ function App() {
     navigate("/");
     console.log("logged out");
   };
-
-  // // Optional effect: perform actions when user logs in
-  // useEffect(() => {
-  //   if (!isLoggedIn) return;
-  //   console.log("User logged in!");
-  //   // Add any other actions on login, such as fetching user data
-  // }, [isLoggedIn]);
 
   const handleLoginClick = () => {
     setActiveModal("login");
@@ -59,6 +58,40 @@ function App() {
     };
   }, [activeModal]);
 
+  function handleSearchSubmit() {
+    // If the search keyword is empty, clear results and set success to true
+    if (currentKeyword === "") {
+      setIsSuccessNewsData(true);
+      setNewsData([]); // Clear any existing news data
+      return;
+    }
+
+    // Set loading state and reset other states before filtering
+    setIsLoading(true);
+    setNewsData([]); // Clear previous news data
+    setIsSuccessNewsData(false); // Reset success state
+    setIsError(false); // Reset error state
+
+    // Simulate API call with setTimeout
+    setTimeout(() => {
+      setIsLoading(false); // Stop loading spinner
+
+      // Filter stub data based on the current keyword
+      const filteredData = articleData.filter(
+        (article) =>
+          article.title.toLowerCase().includes(currentKeyword.toLowerCase()) ||
+          article.description
+            .toLowerCase()
+            .includes(currentKeyword.toLowerCase())
+      );
+
+      // Set news data with the filtered results
+      setNewsData(filteredData);
+
+      // Set success state based on whether results were found
+      setIsSuccessNewsData(filteredData.length > 0);
+    }, 1000); // Simulate a delay
+  }
   return (
     <div className="page">
       <div className="page_content">
@@ -71,6 +104,12 @@ function App() {
                 setActiveModal={setActiveModal}
                 isLoggedIn={isLoggedIn}
                 handleLogout={handleLogout}
+                newsData={newsData}
+                isSuccess={isSuccessNewsData}
+                isLoading={isLoading}
+                isError={isError}
+                handleSearchSubmit={handleSearchSubmit}
+                setCurrentKeyword={setCurrentKeyword}
               />
             }
           ></Route>

@@ -1,6 +1,5 @@
 import "../NewsCard/NewsCard.css";
 import { useLocation } from "react-router";
-import { Link } from "react-router-dom";
 
 function NewsCard({ article, isLoggedIn }) {
   const location = useLocation();

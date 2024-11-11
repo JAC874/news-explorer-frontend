@@ -48,6 +48,7 @@
   background-color: #fff;
   padding: 0;
   color: #1a1b22;
+  transition: 0.4s ease;
 }
 
 .news-card-list__more-btn:hover {

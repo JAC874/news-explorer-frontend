@@ -2,7 +2,14 @@ import "./Header.css";
 import Nav from "../Nav/Nav";
 import SearchForm from "../SearchForm/SearchForm";
 
-function Header({ isLoggedIn, handleLoginClick, handleLogout }) {
+function Header({
+  isLoggedIn,
+  handleLoginClick,
+  handleLogout,
+  handleSearchSubmit,
+  setCurrentKeyword,
+  currentKeyword,
+}) {
   const isInverse = false;
 
   return (
@@ -21,7 +28,11 @@ function Header({ isLoggedIn, handleLoginClick, handleLogout }) {
           Find the latest news on any topic and save them in your personal
           account.
         </h2>
-        <SearchForm />
+        <SearchForm
+          handleSearchSubmit={handleSearchSubmit}
+          setCurrentKeyword={setCurrentKeyword}
+          currentKeyword={currentKeyword}
+        />
       </div>
     </header>
   );

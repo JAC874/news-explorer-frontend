@@ -1,4 +1,5 @@
 import "../NewsCardList/NewsCardList.css";
+import { useState } from "react";
 
 import notFound from "../../assets/not-found-img.svg";
 import Preloader from "../Preloader/Preloader";
@@ -6,11 +7,50 @@ import NewsCard from "../NewsCard/NewsCard";
 
 import { articleData } from "../../utils/stubResponse"; // Import the article data
 
-function NewsCardList({ isLoggedIn }) {
+function NewsCardList({
+  isLoggedIn,
+  newsData,
+  isSuccess,
+  isLoading,
+  isError,
+  currentKeyword,
+}) {
+  const filteredNewsData = Array.isArray(newsData)
+    ? newsData
+        .filter((article) => article.title !== "[Removed]")
+        .filter((article) =>
+          currentKeyword
+            ? article.title
+                .toLowerCase()
+                .includes(currentKeyword.toLowerCase()) ||
+              article.description
+                .toLowerCase()
+                .includes(currentKeyword.toLowerCase())
+            : true
+        )
+    : [];
+
+  const [activeNewsDataLength, setActiveNewsDataLength] = useState(3);
+  const activeNewsDataItems = filteredNewsData.slice(0, activeNewsDataLength);
+
+  const handleOnClick = () => {
+    setActiveNewsDataLength((prevState) => prevState + 3);
+  };
+
+  const isInitialState =
+    newsData.length === 0 && !isSuccess && !isError && !isLoading;
+  const emptyNewsDataArray = newsData.length === 0 && isSuccess;
+
   return (
     <section className="news-card-list">
       {/* NOT FOUND */}
-      <div className="news-card-list__not-found">
+      <div
+        className={
+          emptyNewsDataArray
+            ? "news-card-list__not-found"
+            : "news-card-list__not-found news-card-list__not-found_hidden"
+        }
+      >
         <img
           src={notFound}
           alt="magnifying glass with sad face"
@@ -23,7 +63,13 @@ function NewsCardList({ isLoggedIn }) {
       </div>
 
       {/* PRELOADER */}
-      <div className="news-card-list__preloader">
+      <div
+        className={
+          isLoading
+            ? "news-card-list__preloader"
+            : "news-card-list__preloader news-card-list__preloader_hidden"
+        }
+      >
         <Preloader />
         <h3 className="news-card-list__preloader-text">
           Searching for news...
@@ -32,12 +78,14 @@ function NewsCardList({ isLoggedIn }) {
       <h2 className="news-card-list__title">Search results</h2>
       <div className="news-card-list__container">
         <ul className="news-card-list__list">
-          {articleData.article.map((article, index) => (
+          {activeNewsDataItems.map((article, index) => (
             <NewsCard key={index} isLoggedIn={isLoggedIn} article={article} />
           ))}
         </ul>
       </div>
-      <button className="news-card-list__more-btn">Show more</button>
+      <button onClick={handleOnClick} className="news-card-list__more-btn">
+        Show more
+      </button>
     </section>
   );
 }
