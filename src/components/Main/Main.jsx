@@ -2,11 +2,15 @@ import Header from "../Header/Header";
 import About from "../About/About";
 import NewsCardList from "../NewsCardList/NewsCardList";
 
-function Main({ handleLoginClick }) {
+function Main({ isLoggedIn, handleLoginClick, handleLogout }) {
   return (
     <main>
-      <Header handleLoginClick={handleLoginClick} />
-      <NewsCardList />
+      <Header
+        isLoggedIn={isLoggedIn}
+        handleLoginClick={handleLoginClick}
+        handleLogout={handleLogout}
+      />
+      <NewsCardList isLoggedIn={isLoggedIn} />
       <About />
     </main>
   );

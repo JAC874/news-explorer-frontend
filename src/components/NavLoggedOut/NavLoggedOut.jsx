@@ -1,8 +1,6 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function NavLoggedOut({ handleLoginClick }) {
-  const location = useLocation();
-
   return (
     <ul className="nav__list">
       <li className="nav__list-item">

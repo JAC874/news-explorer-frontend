@@ -1,0 +1,127 @@
+.nav {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  padding: 0 104px 0 104px;
+  justify-content: space-between;
+  font-family: "Roboto-Bold", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  color: white;
+  border-bottom: 1px solid #ffffff;
+}
+
+.nav[data-theme="dark"] {
+  --primary: #fff;
+  --border: rgba(255, 255, 255, 0.2);
+}
+
+.nav[data-theme="light"] {
+  --primary: black;
+  --border: #d1d2d6;
+}
+
+.nav_logo {
+  border: none;
+  margin: 0;
+  font-family: "RobotoSlab-Bold", Arial, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--primary);
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding-inline-start: 0;
+}
+
+.nav__list-item {
+  text-decoration: none;
+}
+
+.nav__link {
+  font-family: "Roboto-Bold";
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--primary);
+}
+
+.nav__link_focused {
+  border-bottom: solid;
+  border-color: (var(--primary));
+  padding-bottom: 27px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-width: 3px;
+}
+
+.nav__signout-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-radius: 100px;
+  border-width: 1px;
+  border: solid;
+  height: 48px;
+  width: 112px;
+  background: transparent;
+  padding: 0;
+  color: var(--primary);
+}
+
+.nav__signout-name {
+  font-family: "Roboto-Regular";
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.nav__signout-btn {
+  border: none;
+  background-image: url("../../assets/logout-black.svg");
+  height: 24px;
+  width: 24px;
+  background-size: cover;
+  background-color: transparent;
+}
+
+.nav__signout-btn-white {
+  background-image: url("../../assets/logout-white.svg");
+}
+
+.nav__signout-btn:hover {
+  cursor: pointer;
+}
+
+.nav__signin-btn {
+  width: 176px;
+  height: 48px;
+  border-radius: 100px;
+  background: none;
+  font-family: "Roboto-Bold";
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  color: var(--primary);
+  border-color: (var(--border));
+  padding: 0;
+}
+
+.nav__signin-btn:hover {
+  cursor: pointer;
+}

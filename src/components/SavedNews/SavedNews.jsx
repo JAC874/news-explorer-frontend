@@ -1,11 +1,18 @@
-import Navigation from "../Navigation/Navigation";
+import Nav from "../Nav/Nav";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
-import "./SavedNews.css";
+// import news list
+import { pageAppearance } from "../../utils/pageAppearance";
 
-function SavedNews() {
+function SavedNews({ isLoggedIn, handleLogout }) {
+  const isInverse = pageAppearance.home === "dark";
+
   return (
     <div className="saved-news">
-      <Navigation />
+      <Nav
+        isInverse={isInverse}
+        isLoggedIn={isLoggedIn}
+        handleLogout={handleLogout}
+      />
       <SavedNewsHeader />
     </div>
   );

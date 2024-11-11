@@ -1,12 +1,19 @@
 import "./Header.css";
-import Navigation from "../Navigation/Navigation";
+import Nav from "../Nav/Nav";
 import SearchForm from "../SearchForm/SearchForm";
 
-function Header({ handleLoginClick }) {
+function Header({ isLoggedIn, handleLoginClick, handleLogout }) {
+  const isInverse = false;
+
   return (
-    <header className="header">
+    <header className="header" data-theme={isInverse ? "light" : "dark"}>
       <div className="header__nav-container">
-        <Navigation handleLoginClick={handleLoginClick} />
+        <Nav
+          isLoggedIn={isLoggedIn}
+          handleLoginClick={handleLoginClick}
+          handleLogout={handleLogout}
+          isInverse={false}
+        />
       </div>
       <div className="header__text-container">
         <h1 className="header__title">What's going on in the world?</h1>

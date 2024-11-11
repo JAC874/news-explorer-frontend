@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import Navigation from "../Navigation/Navigation";
+import Nav from "../Nav/Nav";
 
 const ProtectedRoute = ({
   children,
