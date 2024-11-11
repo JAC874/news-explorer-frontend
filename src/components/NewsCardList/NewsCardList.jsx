@@ -42,7 +42,13 @@ function NewsCardList({
   const emptyNewsDataArray = newsData.length === 0 && isSuccess;
 
   return (
-    <section className="news-card-list">
+    <section
+      className={
+        isInitialState
+          ? " news-card-list news-card-list_hidden"
+          : "news-card-list"
+      }
+    >
       {/* NOT FOUND */}
       <div
         className={

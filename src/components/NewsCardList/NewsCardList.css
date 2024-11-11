@@ -105,9 +105,9 @@
   position: relative;
 }
 
-/* .news-card-list__preloader_hidden {
+.news-card-list__preloader_hidden {
   display: none;
-} */
+}
 
 .news-card-list__preloader-text {
   font-family: "Roboto-Regular";

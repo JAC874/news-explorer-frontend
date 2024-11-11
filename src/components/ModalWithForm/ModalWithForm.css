@@ -154,3 +154,15 @@
 .modal__or-txt {
   color: #000;
 }
+
+.modal__input-error {
+  color: red;
+  display: none;
+  font-family: Inter;
+  font-size: 12px;
+  line-height: 14.5px;
+}
+
+.modal__input-error_visible {
+  display: block;
+}
