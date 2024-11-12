@@ -9,6 +9,9 @@ import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import SavedNews from "../SavedNews/SavedNews";
 import { articleData } from "../../utils/stubResponse"; // Import the stub data
+import { getNews } from "../../utils/newsApi";
+import { APIKey } from "../../utils/constants";
+import { getTodaysDate, getLastWeeksDate } from "../../utils/Dates";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -59,39 +62,44 @@ function App() {
   }, [activeModal]);
 
   function handleSearchSubmit() {
-    // If the search keyword is empty, clear results and set success to true
     if (currentKeyword === "") {
       setIsSuccessNewsData(true);
-      setNewsData([]); // Clear any existing news data
       return;
     }
 
-    // Set loading state and reset other states before filtering
     setIsLoading(true);
-    setNewsData([]); // Clear previous news data
-    setIsSuccessNewsData(false); // Reset success state
-    setIsError(false); // Reset error state
-
-    // Simulate API call with setTimeout
-    setTimeout(() => {
-      setIsLoading(false); // Stop loading spinner
-
-      // Filter stub data based on the current keyword
-      const filteredData = articleData.filter(
-        (article) =>
-          article.title.toLowerCase().includes(currentKeyword.toLowerCase()) ||
-          article.description
-            .toLowerCase()
-            .includes(currentKeyword.toLowerCase())
-      );
-
-      // Set news data with the filtered results
-      setNewsData(filteredData);
-
-      // Set success state based on whether results were found
-      setIsSuccessNewsData(filteredData.length > 0);
-    }, 1000); // Simulate a delay
+    setNewsData([]);
+    setIsSuccessNewsData(false);
+    setIsError(false);
+  
+    getNews(currentKeyword, APIKey, getLastWeeksDate(), getTodaysDate())
+      .then((data) => {
+        setIsSuccessNewsData(true);
+        setNewsData(data.articles);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetcing news:", err);
+        setIsError(true);
+      });
   }
+  // const handleRegistration = (values, resetRegistrationForm) => {
+  //   if (!values) return;
+
+  //   registerUser(values)
+  //     .then((res) => {
+  //       console.log(res);
+  //       setIsLoggedIn(true);
+  //       setCurrentUser(res.data);
+  //       resetRegistrationForm();
+  //       closeActiveModal();
+  //       setActiveModal("success");
+  //     })
+  //     .catch((res) => {
+  //       console.log(`There is an error in handleUserRegistration: ${res}`);
+  //     });
+  // };
+
   return (
     <div className="page">
       <div className="page_content">
@@ -132,6 +140,7 @@ function App() {
         isOpen={activeModal === "register"}
         onClose={closeActiveModal}
         setActiveModal={setActiveModal}
+        // handleRegistration={handleRegistration}
       />
 
       {/* Temporary buttons to manually toggle login state */}
