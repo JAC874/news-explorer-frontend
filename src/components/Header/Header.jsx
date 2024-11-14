@@ -9,6 +9,7 @@ function Header({
   handleSearchSubmit,
   setCurrentKeyword,
   currentKeyword,
+  username,
 }) {
   const isInverse = false;
 
@@ -20,6 +21,7 @@ function Header({
           handleLoginClick={handleLoginClick}
           handleLogout={handleLogout}
           isInverse={false}
+          username={username}
         />
       </div>
       <div className="header__text-container">

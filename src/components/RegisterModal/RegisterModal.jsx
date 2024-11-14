@@ -1,12 +1,27 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormValidation } from "../../utils/useFormValidation";
 
-function RegisterModal({ onClose, isOpen, setActiveModal, isLoading }) {
+function RegisterModal({
+  onClose,
+  isOpen,
+  setActiveModal,
+  isLoading,
+  handleRegistration,
+}) {
   const { values, handleChange, isValid, resetForm, errors } =
     useFormValidation();
 
-  const handleSubmit = () => {
-    handleRegistration({ ...values, name: values.username }, resetCurrentForm);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Ensure handleRegistration is called with correct data
+    handleRegistration(
+      {
+        email: values.email,
+        password: values.password,
+        username: values.username,
+      },
+      resetCurrentForm
+    );
   };
 
   const resetCurrentForm = () => {

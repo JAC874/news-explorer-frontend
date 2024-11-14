@@ -13,6 +13,10 @@ function Main({
   handleSearchSubmit,
   setCurrentKeyword,
   currentKeyword,
+  totalResults,
+  loadMoreArticles,
+  setDisplayedArticlesCount,
+  username,
 }) {
   return (
     <main>
@@ -23,6 +27,7 @@ function Main({
         handleSearchSubmit={handleSearchSubmit}
         setCurrentKeyword={setCurrentKeyword}
         currentKeyword={currentKeyword}
+        username={username}
       />
       <NewsCardList
         isLoggedIn={isLoggedIn}
@@ -31,6 +36,9 @@ function Main({
         isLoading={isLoading}
         isError={isError}
         currentKeyword={currentKeyword}
+        totalResults={totalResults}
+        loadMoreArticles={loadMoreArticles}
+        setDisplayedArticlesCount={setDisplayedArticlesCount} // Passed to NewsCardList
       />
       <About />
     </main>

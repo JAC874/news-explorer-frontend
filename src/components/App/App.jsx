@@ -21,22 +21,66 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [currentKeyword, setCurrentKeyword] = useState("");
+  const [totalResults, setTotalResults] = useState(0); // Track total articles
+  const [currentPage, setCurrentPage] = useState(1); // Track current page
+  const [username, setUsername] = useState("");
 
   const navigate = useNavigate();
 
-  // Manually set login state to true
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-    navigate("/");
-    setActiveModal(""); // Close any open modal, if desired
-    console.log("logged in");
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      setIsLoggedIn(storedUser.isLoggedIn || false);
+      setUsername(storedUser.username || "");
+    }
+  }, []);
+
+  const handleLogin = (email, password) => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+
+    if (
+      storedUser &&
+      storedUser.email === email && // Check if email matches
+      storedUser.password === password // Check if password matches
+    ) {
+      storedUser.isLoggedIn = true;
+      localStorage.setItem("user", JSON.stringify(storedUser));
+      setIsLoggedIn(true);
+      setUsername(storedUser.username);
+      navigate("/");
+      setActiveModal(""); // Close the login modal
+    } else {
+      console.error("Invalid email or password");
+    }
   };
 
-  // Manually set login state to false
   const handleLogout = () => {
     setIsLoggedIn(false);
+    setUsername(""); // Clear username on logout
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      storedUser.isLoggedIn = false; // Update isLoggedIn to false
+      localStorage.setItem("user", JSON.stringify(storedUser)); // Save the updated object
+    }
     navigate("/");
-    console.log("logged out");
+  };
+
+  const handleRegistration = ({ username, password, email }, resetForm) => {
+    // Check if user already exists
+    const existingUser = JSON.parse(localStorage.getItem("user"));
+    if (existingUser && existingUser.email === email) {
+      return;
+    }
+
+    // Prepare user data to be saved
+    const userData = { username, password, email, isLoggedIn: false };
+
+    // Save to localStorage
+    localStorage.setItem("user", JSON.stringify(userData));
+
+    // Reset the form and switch to login modal
+    resetForm();
+    setActiveModal("login");
   };
 
   const handleLoginClick = () => {
@@ -68,14 +112,16 @@ function App() {
     }
 
     setIsLoading(true);
-    setNewsData([]);
     setIsSuccessNewsData(false);
     setIsError(false);
-  
+    setNewsData([]);
+    setCurrentPage(1);
+
     getNews(currentKeyword, APIKey, getLastWeeksDate(), getTodaysDate())
       .then((data) => {
-        setIsSuccessNewsData(true);
+        setTotalResults(data.totalResults);
         setNewsData(data.articles);
+        setIsSuccessNewsData(true);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -83,22 +129,28 @@ function App() {
         setIsError(true);
       });
   }
-  // const handleRegistration = (values, resetRegistrationForm) => {
-  //   if (!values) return;
 
-  //   registerUser(values)
-  //     .then((res) => {
-  //       console.log(res);
-  //       setIsLoggedIn(true);
-  //       setCurrentUser(res.data);
-  //       resetRegistrationForm();
-  //       closeActiveModal();
-  //       setActiveModal("success");
-  //     })
-  //     .catch((res) => {
-  //       console.log(`There is an error in handleUserRegistration: ${res}`);
-  //     });
-  // };
+  function loadMoreArticles() {
+    const nextPage = currentPage + 1;
+    setIsLoading(true);
+
+    getNews(
+      currentKeyword,
+      APIKey,
+      getLastWeeksDate(),
+      getTodaysDate(),
+      nextPage
+    )
+      .then((data) => {
+        setNewsData((prevData) => [...prevData, ...data.articles]);
+        setCurrentPage(nextPage);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching more news:", err);
+        setIsError(true);
+      });
+  }
 
   return (
     <div className="page">
@@ -118,13 +170,20 @@ function App() {
                 isError={isError}
                 handleSearchSubmit={handleSearchSubmit}
                 setCurrentKeyword={setCurrentKeyword}
+                totalResults={totalResults}
+                loadMoreArticles={loadMoreArticles}
+                username={username}
               />
             }
           ></Route>
           <Route
             path="/saved-news"
             element={
-              <SavedNews isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
+              <SavedNews
+                isLoggedIn={isLoggedIn}
+                handleLogout={handleLogout}
+                username={username}
+              />
             }
           ></Route>
         </Routes>
@@ -140,12 +199,8 @@ function App() {
         isOpen={activeModal === "register"}
         onClose={closeActiveModal}
         setActiveModal={setActiveModal}
-        // handleRegistration={handleRegistration}
+        handleRegistration={handleRegistration}
       />
-
-      {/* Temporary buttons to manually toggle login state */}
-      <button onClick={handleLogin}>Log In (Manual Test)</button>
-      <button onClick={handleLogout}>Log Out (Manual Test)</button>
     </div>
   );
 }

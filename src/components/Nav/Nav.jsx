@@ -2,14 +2,24 @@ import NavLoggedIn from "../NavLoggedIn/NavLoggedIn";
 import NavLoggedOut from "../NavLoggedOut/NavLoggedOut";
 import "./Nav.css";
 
-function Nav({ handleLoginClick, isInverse, isLoggedIn, handleLogout }) {
+function Nav({
+  handleLoginClick,
+  isInverse,
+  isLoggedIn,
+  handleLogout,
+  username,
+}) {
   return (
     <nav className="nav" data-theme={isInverse ? "light" : "dark"}>
       <p className="nav_logo">NewsExplorer</p>
       {!isLoggedIn ? (
         <NavLoggedOut handleLoginClick={handleLoginClick} />
       ) : (
-        <NavLoggedIn isInverse={isInverse} handleLogout={handleLogout} />
+        <NavLoggedIn
+          isInverse={isInverse}
+          handleLogout={handleLogout}
+          username={username}
+        />
       )}
     </nav>
   );

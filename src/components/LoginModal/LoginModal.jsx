@@ -1,16 +1,29 @@
+import { useEffect } from "react";
+
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useFormValidation } from "../../utils/useFormValidation";
 
-function LoginModal({ onClose, isOpen, setActiveModal, isLoading }) {
+function LoginModal({
+  onClose,
+  isOpen,
+  setActiveModal,
+  isLoading,
+  handleLogin,
+}) {
   const { values, handleChange, isValid, resetForm, errors } =
     useFormValidation();
-  const handleSubmit = () => {
-    handleLogin(values, resetCurrentForm);
-  };
 
-  const resetCurrentForm = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleLogin(values.email, values.password); // Pass email and password to handleLogin
     resetForm({ email: "", password: "" });
   };
+
+  useEffect(() => {
+    if (!isOpen) {
+      resetForm({ email: "", password: "" });
+    }
+  }, [isOpen, resetForm]);
 
   return (
     <ModalWithForm
@@ -36,6 +49,7 @@ function LoginModal({ onClose, isOpen, setActiveModal, isLoading }) {
         minLength="4"
         maxLength="64"
         onChange={handleChange}
+        value={values.email || ""} // Controlled input
         required
       />
 
@@ -59,6 +73,7 @@ function LoginModal({ onClose, isOpen, setActiveModal, isLoading }) {
         name="password"
         placeholder="Enter password"
         onChange={handleChange}
+        value={values.password || ""} // Controlled input
         required
       />
       <span
