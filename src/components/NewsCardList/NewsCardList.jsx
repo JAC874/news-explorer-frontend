@@ -14,6 +14,8 @@ function NewsCardList({
   isLoading,
   isError,
   currentKeyword,
+  handleDeleteArticle,
+  handleSaveArticle,
 }) {
   const filteredNewsData = Array.isArray(newsData)
     ? newsData
@@ -85,7 +87,13 @@ function NewsCardList({
       <div className="news-card-list__container">
         <ul className="news-card-list__list">
           {activeNewsDataItems.map((article, index) => (
-            <NewsCard key={index} isLoggedIn={isLoggedIn} article={article} />
+            <NewsCard
+              key={index}
+              isLoggedIn={isLoggedIn}
+              article={article}
+              handleDeleteArticle={handleDeleteArticle}
+              handleSaveArticle={handleSaveArticle}
+            />
           ))}
         </ul>
       </div>

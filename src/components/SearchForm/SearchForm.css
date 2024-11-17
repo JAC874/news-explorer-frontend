@@ -60,7 +60,6 @@
   line-height: 24px;
   text-align: center;
   transition: background-color 0.2s ease;
-
 }
 
 .search__submit-btn:hover {
@@ -73,4 +72,37 @@
   background-color: #2a65cc;
 }
 
-/* change button color state with handler? */
+@media screen and (max-width: 850px) {
+  .search__input {
+    width: 452px;
+    height: 56px;
+  }
+
+  .search__submit-btn {
+    height: 56px;
+    width: 160px;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .search__form-container {
+    padding: 122px 0 32px;
+  }
+
+  .search__input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .search__input {
+    width: 265px;
+    height: 36px;
+    padding: 10px;
+  }
+
+  .search__submit-btn {
+    position: unset;
+    width: 285px;
+    height: 56px;
+  }
+}

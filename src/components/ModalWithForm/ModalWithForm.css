@@ -166,3 +166,21 @@
 .modal__input-error_visible {
   display: block;
 }
+
+@media screen and (max-width: 500px) {
+  .modal__content {
+    max-width: calc(100vh - 5px);
+    padding: 16px 17px;
+  }
+
+  .modal__close {
+    top: -38px;
+    left: 285px;
+    height: 24px;
+    width: 24px;
+  }
+
+  .modal__submit-btn {
+    width: 288px;
+  }
+}

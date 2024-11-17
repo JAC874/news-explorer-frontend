@@ -41,7 +41,7 @@
   opacity: 0.4;
 }
 
-/* @media screen and (max-width: 850px) {
+@media screen and (max-width: 850px) {
   .footer {
     padding: 18px 40px;
   }
@@ -54,4 +54,4 @@
     max-width: 320px;
     padding: 20px 16px 22px;
   }
-} */
+}

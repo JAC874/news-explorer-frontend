@@ -1,9 +1,15 @@
 import Nav from "../Nav/Nav";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
-// import news list
 import { pageAppearance } from "../../utils/pageAppearance";
+import SavedCardsList from "../SavedNewsLIst/SavedNewsList";
 
-function SavedNews({ isLoggedIn, handleLogout, username }) {
+function SavedNews({
+  isLoggedIn,
+  handleLogout,
+  username,
+  handleDeleteArticle,
+  userArticles,
+}) {
   const isInverse = pageAppearance.home === "dark";
 
   return (
@@ -15,6 +21,10 @@ function SavedNews({ isLoggedIn, handleLogout, username }) {
         username={username}
       />
       <SavedNewsHeader />
+      <SavedCardsList
+        handleDeleteArticle={handleDeleteArticle}
+        userArticles={userArticles}
+      />
     </div>
   );
 }

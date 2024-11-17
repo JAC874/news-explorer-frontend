@@ -17,6 +17,8 @@ function Main({
   loadMoreArticles,
   setDisplayedArticlesCount,
   username,
+  handleDeleteArticle,
+  handleSaveArticle,
 }) {
   return (
     <main>
@@ -38,7 +40,9 @@ function Main({
         currentKeyword={currentKeyword}
         totalResults={totalResults}
         loadMoreArticles={loadMoreArticles}
-        setDisplayedArticlesCount={setDisplayedArticlesCount} // Passed to NewsCardList
+        setDisplayedArticlesCount={setDisplayedArticlesCount}
+        handleDeleteArticle={handleDeleteArticle}
+        handleSaveArticle={handleSaveArticle}
       />
       <About />
     </main>

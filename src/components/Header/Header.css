@@ -35,3 +35,38 @@
   padding-top: 32px;
   font-weight: 400;
 }
+
+@media screen and (max-width: 800px) {
+  .header__text-container {
+    max-width: 385px;
+  }
+
+  .header__title {
+    font-size: 36px;
+    line-height: 40px;
+    padding: 0;
+    padding-top: 23px;
+    margin: 0 auto;
+  }
+
+  .header__subtitle {
+    padding: 23px 40px 0 0;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header__text-container {
+    max-width: 285px;
+  }
+  .header__title {
+    padding-top: 30px;
+    padding-left: 16px;
+  }
+
+  .header__sub-title {
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
