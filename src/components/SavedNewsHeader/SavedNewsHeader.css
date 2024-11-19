@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   padding: 40px 104px 0 104px;
+  border-top: 1px solid #d1d2d6;
 }
 
 .saved-news-header__title {

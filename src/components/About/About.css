@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   gap: 56px;
-  padding: 80px 216px 80px 104px;
+  padding: 80px 104px 80px 104px;
   align-items: flex-start;
 }
 
@@ -46,7 +46,6 @@
   padding: 0;
 }
 
-
 @media screen and (max-width: 850px) {
   .about__selfie-container {
     height: 232px;
@@ -56,20 +55,17 @@
     padding: 40px;
   }
 
-  .about__selfie-container {
-    height: 232px;
-    width: 232px;
-  }
   .about__text {
     max-width: 424px;
   }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 600px) {
   .about {
     flex-direction: column;
     gap: 24px;
     padding: 32px 24px;
+    align-items: center;
   }
   .about__title {
     margin: 0;

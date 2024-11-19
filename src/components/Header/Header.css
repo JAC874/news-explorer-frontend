@@ -6,10 +6,6 @@
   height: 576px;
 }
 
-.header__nav-container {
-  /* background-color: cadetblue; */
-}
-
 .header__text-container {
   margin: 0 auto;
   max-width: 608px;
@@ -36,9 +32,9 @@
   font-weight: 400;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 770px) {
   .header__text-container {
-    max-width: 385px;
+    max-width: 452px;
   }
 
   .header__title {
@@ -55,7 +51,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 510px) {
   .header__text-container {
     max-width: 285px;
   }

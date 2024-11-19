@@ -13,7 +13,6 @@ function RegisterModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Ensure handleRegistration is called with correct data
     handleRegistration(
       {
         email: values.email,
@@ -31,7 +30,7 @@ function RegisterModal({
   return (
     <ModalWithForm
       title="Sign up"
-      buttonText={isLoading ? "Signing up" : "Sign up"}
+      buttonText={isLoading ? "Signing up..." : "Sign up"}
       altButtonTxt={"Sign in"}
       onClose={onClose}
       isOpen={isOpen}
@@ -39,22 +38,21 @@ function RegisterModal({
       onSubmit={handleSubmit}
       formValid={isValid}
     >
-      <label htmlFor="email-login" className="modal__label">
+      <label htmlFor="email-register" className="modal__label">
         Email{" "}
       </label>
-
       <input
         type="email"
         className="modal__input"
         id="email-register"
         name="email"
+        value={values.email || ""}
         placeholder="Enter email"
         minLength="4"
         maxLength="64"
         onChange={handleChange}
         required
       />
-
       <span
         className={`modal__input-error ${
           errors.email ? "modal__input-error_visible" : ""
@@ -64,20 +62,19 @@ function RegisterModal({
         {errors.email}
       </span>
 
-      <label htmlFor="password-login" className="modal__label">
+      <label htmlFor="password-register" className="modal__label">
         Password{" "}
       </label>
-
       <input
         type="password"
         className="modal__input"
         id="password-register"
         name="password"
+        value={values.password || ""}
         placeholder="Enter password"
         onChange={handleChange}
         required
       />
-
       <span
         className={`modal__input-error ${
           errors.password ? "modal__input-error_visible" : ""
@@ -87,22 +84,21 @@ function RegisterModal({
         {errors.password}
       </span>
 
-      <label htmlFor="username-login" className="modal__label">
+      <label htmlFor="username-register" className="modal__label">
         Username{" "}
       </label>
-
       <input
         type="text"
         className="modal__input"
         id="username-register"
         name="username"
+        value={values.username || ""}
         placeholder="Enter your username"
         minLength="4"
         maxLength="24"
         onChange={handleChange}
         required
       />
-
       <span
         className={`modal__input-error ${
           errors.username ? "modal__input-error_visible" : ""

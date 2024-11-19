@@ -8,6 +8,7 @@ import Footer from "../Footer/Footer";
 import LoginModal from "../LoginModal/LoginModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import SavedNews from "../SavedNews/SavedNews";
+import SuccessModal from "../SuccessModal/SuccesModal";
 import { getNews } from "../../utils/newsApi";
 import { APIKey } from "../../utils/constants";
 import { getTodaysDate, getLastWeeksDate } from "../../utils/Dates";
@@ -21,10 +22,7 @@ function App() {
       storedUser || { email: "", password: "", username: "", isLoggedIn: false }
     );
   });
-  const [userArticles, setUserArticles] = useState(() => {
-    const storedArticles = JSON.parse(localStorage.getItem("userArticles"));
-    return storedArticles || []; // Initialize from localStorage
-  });
+  const [userArticles, setUserArticles] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [newsData, setNewsData] = useState([]);
@@ -49,18 +47,29 @@ function App() {
   };
 
   const handleLogin = (email, password) => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
 
-    if (
-      storedUser &&
-      storedUser.email === email &&
-      storedUser.password === password
-    ) {
-      storedUser.isLoggedIn = true;
-      localStorage.setItem("user", JSON.stringify(storedUser));
-      setCurrentUser(storedUser);
+    const userToLogin = storedUsers.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (userToLogin) {
+      userToLogin.isLoggedIn = true;
+
+      const updatedUsers = storedUsers.map((user) =>
+        user.email === email ? userToLogin : user
+      );
+
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      setCurrentUser(userToLogin);
       setIsLoggedIn(true);
-      setUsername(storedUser.username);
+      setUsername(userToLogin.username);
+
+      // Load articles specific to the logged-in user
+      const userSpecificArticles =
+        JSON.parse(localStorage.getItem(email)) || [];
+      setUserArticles(userSpecificArticles);
+
       navigate("/");
       setActiveModal("");
     } else {
@@ -69,25 +78,43 @@ function App() {
   };
 
   const handleLogout = () => {
-    const updatedUser = { ...currentUser, isLoggedIn: false };
-    localStorage.setItem("user", JSON.stringify(updatedUser));
-    setCurrentUser(updatedUser);
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+    const updatedUsers = storedUsers.map((user) =>
+      user.email === currentUser.email ? { ...user, isLoggedIn: false } : user
+    );
+
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+    // Reset state for current user and articles
+    setCurrentUser({
+      email: "",
+      password: "",
+      username: "",
+      isLoggedIn: false,
+    });
     setIsLoggedIn(false);
     setUsername("");
+    setUserArticles([]); // Clear articles in state
+
     navigate("/");
   };
 
   const handleRegistration = ({ username, password, email }, resetForm) => {
-    const existingUser = JSON.parse(localStorage.getItem("user"));
-    if (existingUser && existingUser.email === email) {
+    const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Check if the email is already registered
+    if (existingUsers.some((user) => user.email === email)) {
+      console.error("User already exists.");
       return;
     }
 
     const newUser = { username, email, password, isLoggedIn: false };
-    localStorage.setItem("user", JSON.stringify(newUser));
-    setCurrentUser(newUser);
+    const updatedUsers = [...existingUsers, newUser];
+
+    localStorage.setItem("users", JSON.stringify(updatedUsers)); // Save the array of users
     resetForm();
-    setActiveModal("login");
+    setActiveModal("success");
   };
 
   const handleLoginClick = () => {
@@ -99,23 +126,26 @@ function App() {
   };
 
   useEffect(() => {
-    const storedArticles =
-      JSON.parse(localStorage.getItem("userArticles")) || [];
-    setUserArticles(storedArticles);
-  }, []);
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+    const loggedInUser = storedUsers.find((user) => user.isLoggedIn);
 
-  useEffect(() => {
-    localStorage.setItem("userArticles", JSON.stringify(userArticles));
-  }, [userArticles]);
+    if (loggedInUser) {
+      setCurrentUser(loggedInUser);
+      setIsLoggedIn(true);
+      setUsername(loggedInUser.username);
 
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser) {
-      setCurrentUser(storedUser);
-      setIsLoggedIn(storedUser.isLoggedIn || false);
-      setUsername(storedUser.username || "");
+      // Load user-specific articles
+      const userSpecificArticles =
+        JSON.parse(localStorage.getItem(loggedInUser.email)) || [];
+      setUserArticles(userSpecificArticles);
     }
   }, []);
+
+  useEffect(() => {
+    if (currentUser.email) {
+      localStorage.setItem(currentUser.email, JSON.stringify(userArticles));
+    }
+  }, [userArticles, currentUser.email]);
 
   useEffect(() => {
     const handleEscClose = (e) => {
@@ -181,41 +211,39 @@ function App() {
   const handleSaveArticle = (article) => {
     const keyword = currentKeyword[0].toUpperCase() + currentKeyword.slice(1);
 
-    if (
-      userArticles.some((existingArticle) => {
-        return existingArticle.link === article.url;
-      })
-    ) {
-      const unSavedArticle = userArticles.find(
-        (existingArticle) => existingArticle.link === article.url
-      );
-      setUserArticles((prevArticles) =>
-        prevArticles.filter((article) => article !== unSavedArticle)
-      );
-      return;
-    }
-
     const newArticle = {
-      keyword: keyword,
+      keyword,
       title: article.title,
       text: article.description,
       date: article.publishedAt,
       source: article.source.name,
       link: article.url,
       image: article.urlToImage,
-      savedBy: currentUser.email,
+      savedBy: currentUser.email, // Associate with current user
     };
 
-    setUserArticles((prevArticles) => [...prevArticles, newArticle]);
+    // Check if the article is already saved by the user
+    const isAlreadySaved = userArticles.some(
+      (existingArticle) =>
+        existingArticle.link === article.url &&
+        existingArticle.savedBy === currentUser.email
+    );
+
+    if (isAlreadySaved) {
+      console.log("Article already saved.");
+      return;
+    }
+
+    const updatedArticles = [...userArticles, newArticle];
+    setUserArticles(updatedArticles);
   };
 
   const handleDeleteArticle = (link) => {
-    setUserArticles((prevArticles) =>
-      prevArticles.filter(
-        (article) =>
-          !(article.link === link && article.savedBy === currentUser.email)
-      )
+    const updatedArticles = userArticles.filter(
+      (article) =>
+        !(article.link === link && article.savedBy === currentUser.email)
     );
+    setUserArticles(updatedArticles);
   };
 
   return (
@@ -272,6 +300,11 @@ function App() {
             onClose={closeActiveModal}
             setActiveModal={setActiveModal}
             handleRegistration={handleRegistration}
+          />
+          <SuccessModal
+            isOpen={activeModal === "success"}
+            onClose={closeActiveModal}
+            setActiveModal={setActiveModal}
           />
         </div>
       </UserArticleContext.Provider>

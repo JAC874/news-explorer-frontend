@@ -12,3 +12,4 @@ export const getNews = (q, apiKey, from, to) => {
     `${baseUrl}?q=${q}&from=${from}&to=${to}&pageSize=100&apiKey=${apiKey}`
   ).then(checkServerResponse);
 };
+

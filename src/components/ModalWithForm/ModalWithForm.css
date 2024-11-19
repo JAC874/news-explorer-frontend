@@ -9,10 +9,19 @@
   justify-content: center;
   align-items: center;
   visibility: hidden;
+  z-index: 100; /* Ensure it stays above other elements */
+  transition: opacity 0.5s ease; /* Fade-in animation for all screen sizes */
+  opacity: 0; /* Initially hidden */
 }
 
 .modal_opened {
   visibility: visible;
+  opacity: 1; /* Fade-in when opened */
+}
+
+.modal_opened .modal__content {
+  transform: none;
+  transition: none;
 }
 
 .modal__content {
@@ -23,21 +32,21 @@
   box-sizing: border-box;
   width: 100%;
   border-radius: 20px;
+  z-index: 101;
 }
 
 .modal__close {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
   position: absolute;
-  bottom: calc(100% + 5px);
-  left: calc(100% + 5px);
+  top: -40px; /* 16px above the modal content */
+  right: 16px; /* 16px from the right edge of the screen */
   height: 40px;
   width: 40px;
   background-image: url("../../assets/close-btn.svg");
   background-repeat: no-repeat;
   background-size: contain;
-  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .modal__title {
@@ -96,10 +105,9 @@
 .modal__submit-btn {
   width: 360px;
   height: 64px;
-  background-color: #000;
+  background-color: #2f71e5;
   border: none;
   border-radius: 100px;
-  background-color: #2f71e5;
   color: #fff;
   margin: 8px 0 0 0;
   padding: 0;
@@ -132,6 +140,7 @@
   width: auto;
   text-align: center;
 }
+
 .modal__text-btn {
   background-color: #fff;
   border: none;
@@ -151,6 +160,7 @@
   cursor: pointer;
   transition: 0.3s;
 }
+
 .modal__or-txt {
   color: #000;
 }
@@ -167,20 +177,47 @@
   display: block;
 }
 
-@media screen and (max-width: 500px) {
+/* Mobile-specific styles */
+@media screen and (max-width: 540px) {
+  .modal {
+    justify-content: flex-end; /* Align modal content to the bottom */
+    align-items: flex-end;
+  }
+
   .modal__content {
-    max-width: calc(100vh - 5px);
-    padding: 16px 17px;
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+    padding: 16px 16px;
+    animation: slide-up 0.7s ease-out; /* Slightly longer animation */
+    box-sizing: border-box;
+    min-height: calc(100vh - 80px); /* Fill most of the screen with padding */
+    transform: translateY(100%); /* Start off-screen */
+    transition: slide-up 0.7s ease-out, opacity 0.5s ease; /* Smooth slide-up animation */
+  }
+
+  .modal_opened .modal__content {
+    transform: translateY(0); /* Slide into view */
   }
 
   .modal__close {
-    top: -38px;
-    left: 285px;
+    top: -56px; /* 16px above the modal content */
+    right: 16px; /* 16px from the right edge */
     height: 24px;
     width: 24px;
+    z-index: 101; /* Ensure it appears above the modal content */
   }
 
   .modal__submit-btn {
-    width: 288px;
+    width: 100%;
+  }
+}
+
+/* Slide-up animation */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
   }
 }

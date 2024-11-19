@@ -72,7 +72,7 @@
   background-color: #2a65cc;
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 770px) {
   .search__input {
     width: 452px;
     height: 56px;

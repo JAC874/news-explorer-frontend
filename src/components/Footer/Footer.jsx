@@ -1,6 +1,6 @@
 import "./Footer.css";
 import github from "../../assets/github-icon.svg";
-import facebook from "../../assets/facebook-icon.svg";
+import linkedin from "../../assets/linkedin-icon.svg";
 import { Link } from "react-router-dom";
 
 function Footer() {
@@ -35,7 +35,7 @@ function Footer() {
           rel="noopener noreferrer"
           className="footer__link footer__link__linkedin"
         >
-          <img src={facebook} alt="LinkedIn Profile" className="footer__icon" />
+          <img src={linkedin} alt="LinkedIn Profile" className="footer__icon" />
         </a>
       </div>
     </div>
