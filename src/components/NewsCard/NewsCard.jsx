@@ -32,14 +32,14 @@ function NewsCard({
 
   const handleSaveClick = () => {
     if (isLoggedIn) {
-      handleSaveArticle(article); // Save or unsave the article
+      handleSaveArticle(article);
     } else {
-      setActiveModal("login"); // Prompt login if not logged in
+      setActiveModal("login");
     }
   };
 
   const handleDeleteClick = () => {
-    handleDeleteArticle(article.link); // Delete the article
+    handleDeleteArticle(article.link);
   };
 
   return (
@@ -64,6 +64,7 @@ function NewsCard({
                   : "news-card__save-btn"
               }
               onClick={handleSaveClick}
+              disabled={!isLoggedIn} // Disable the button when not logged in
             ></button>
           )}
           {location.pathname === "/saved-news" && (
@@ -87,7 +88,7 @@ function NewsCard({
       <div className="news-card__text">
         <span className="news-card__date">{dateInWords}</span>
         <a
-          href={location.pathname === "/" ? article.url : article.link} // Use link for saved articles
+          href={location.pathname === "/" ? article.url : article.link}
           target="_blank"
           rel="noopener noreferrer"
           className="news-card__title-link"

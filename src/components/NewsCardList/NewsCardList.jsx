@@ -5,8 +5,6 @@ import notFound from "../../assets/not-found-img.svg";
 import Preloader from "../Preloader/Preloader";
 import NewsCard from "../NewsCard/NewsCard";
 
-import { articleData } from "../../utils/stubResponse"; // Import the article data
-
 function NewsCardList({
   isLoggedIn,
   newsData,

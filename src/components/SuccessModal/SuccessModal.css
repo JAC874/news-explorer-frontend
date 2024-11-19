@@ -1,5 +1,5 @@
 .modal__text {
-  font-family: "Roboto-Bold";
+  font-family: "Roboto-Bold", "Inter", "Verdana", sans-serif;
   font-size: 24px;
   font-weight: 900;
   line-height: 28px;

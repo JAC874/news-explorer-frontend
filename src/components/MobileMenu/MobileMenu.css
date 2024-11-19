@@ -71,7 +71,7 @@
 }
 
 .mobile-menu__link {
-  font-family: "Roboto-Bold";
+  font-family: "Roboto-Bold", "Inter", "Verdana", sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
@@ -81,19 +81,12 @@
   padding: 0;
 }
 
-/* .mobile-menu__link_loggedin {
-  padding: 25px;
-} */
-/* .mobile-menu__link_loggedout {
-  padding: 16px;
-} */
-
 .mobile-menu__signin-btn {
   width: 288px;
   height: 56px;
   border-radius: 100px;
   background: none;
-  font-family: "Roboto-Bold";
+  font-family: "Roboto-Bold", "Inter", "Verdana", sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
@@ -129,7 +122,7 @@
   background: transparent;
 }
 .mobile-menu__signout-name {
-  font-family: "Roboto-Regular";
+  font-family: "Roboto-Regular", "Inter", "Verdana", sans-serif;
   font-size: 16px;
   font-weight: 400;
   color: #fff;

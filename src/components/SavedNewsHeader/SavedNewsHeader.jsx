@@ -1,6 +1,6 @@
 import "../SavedNewsHeader/SavedNewsHeader.css";
 import { useContext } from "react";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../contexts/currentUserContext";
 import { UserArticleContext } from "../../contexts/UserArticleContext";
 
 function SavedNewsHeader() {
@@ -20,7 +20,7 @@ function SavedNewsHeader() {
     <section className="saved-news-header">
       <h3 className="saved-news-header__title">Saved articles</h3>
       <p className="saved-news-header__subtitle">
-        {currentUser.username || "You"} have{" "}
+        {currentUser.username}, you have{" "}
         <span className="saved-news-header__article-count">
           {userArticles.length}
         </span>{" "}

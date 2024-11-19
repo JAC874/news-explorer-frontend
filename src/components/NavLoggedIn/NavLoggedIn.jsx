@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/currentUserContext";
 
-function NavLoggedIn({ isInverse, handleLogout, username }) {
+function NavLoggedIn({ isInverse, handleLogout }) {
+  const { currentUser } = useContext(CurrentUserContext);
   const location = useLocation();
 
   const signoutBtnClass = !isInverse
@@ -37,7 +40,9 @@ function NavLoggedIn({ isInverse, handleLogout, username }) {
 
       <li className="nav__list-item">
         <div className="nav__signout-container">
-          <p className="nav__signout-name">{username || "Guest"}</p>
+          <p className="nav__signout-name">
+            {currentUser?.username || "Guest"}
+          </p>
           <button
             onClick={handleLogout}
             type="button"

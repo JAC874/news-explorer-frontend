@@ -13,9 +13,27 @@ export const checkServerResponse = (res) => {
 };
 
 // Simulate saving an article
-function saveArticle({ keyword, title, text, date, source, link, image }) {
+function saveArticle({
+  keyword,
+  title,
+  text,
+  date,
+  source,
+  link,
+  image,
+  savedBy,
+}) {
   const storedArticles = JSON.parse(localStorage.getItem("userArticles")) || [];
-  const newArticle = { keyword, title, text, date, source, link, image };
+  const newArticle = {
+    keyword,
+    title,
+    text,
+    date,
+    source,
+    link,
+    image,
+    savedBy,
+  };
 
   localStorage.setItem(
     "userArticles",
@@ -26,9 +44,11 @@ function saveArticle({ keyword, title, text, date, source, link, image }) {
 }
 
 // Simulate deleting an article
-function deleteArticle(id) {
+function deleteArticle(link) {
   const storedArticles = JSON.parse(localStorage.getItem("userArticles")) || [];
-  const updatedArticles = storedArticles.filter((article) => article.id !== id);
+  const updatedArticles = storedArticles.filter(
+    (article) => article.link !== link
+  );
 
   localStorage.setItem("userArticles", JSON.stringify(updatedArticles));
 

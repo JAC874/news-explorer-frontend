@@ -27,7 +27,11 @@ function Footer() {
           rel="noopener noreferrer"
           className="footer__link footer__link__github"
         >
-          <img src={github} alt="GitHub Profile" className="footer__icon" />
+          <img
+            src={github}
+            alt="GitHub Profile Icon"
+            className="footer__icon"
+          />
         </a>
         <a
           href="https://www.linkedin.com/in/jordoncunningham/"
@@ -35,7 +39,11 @@ function Footer() {
           rel="noopener noreferrer"
           className="footer__link footer__link__linkedin"
         >
-          <img src={linkedin} alt="LinkedIn Profile" className="footer__icon" />
+          <img
+            src={linkedin}
+            alt="LinkedIn Profile Icon"
+            className="footer__icon"
+          />
         </a>
       </div>
     </div>
@@ -43,6 +51,3 @@ function Footer() {
 }
 
 export default Footer;
-
-// use Router
-// change facebook to LinkedIn

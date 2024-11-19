@@ -30,7 +30,7 @@ function ModalWithForm({
                 !formValid ? "modal__submit-btn_disabled" : ""
               }`}
               type="submit"
-              disabled={!formValid} // Set disabled as a boolean
+              disabled={!formValid} 
             >
               {buttonText}
             </button>

@@ -26,7 +26,7 @@
 
 .news-card__title {
   margin: 12px 24px 12px;
-  font-family: "RobotoSlab-Medium";
+  font-family: "RobotoSlab-Medium", "Arial", "Helvetica", sans-serif;
   font-size: 26px;
   font-weight: 400;
   line-height: 30px;
@@ -48,7 +48,7 @@
 
 .news-card__date {
   padding: 20px 24px 12px;
-  font-family: "Roboto-Regular";
+  font-family: "Roboto-Regular", "Inter", "Verdana", sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
@@ -57,7 +57,7 @@
 }
 
 .news-card__description {
-  font-family: "Roboto-Regular";
+  font-family: "Roboto-Regular", "Inter", "Verdana", sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
@@ -71,7 +71,7 @@
   position: absolute;
   left: 24px;
   bottom: 24px;
-  font-family: "Roboto-Slab";
+  font-family: "Roboto-Slab", "Arial", "Helvetica", sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 20px;
@@ -97,7 +97,7 @@
 
 .news-card__keyword-text {
   color: #000;
-  font-family: "Roboto-Bold";
+  font-family: "Roboto-Bold", "Inter", "Verdana", sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;

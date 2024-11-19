@@ -48,7 +48,9 @@ function MobileMenu({
             </ul>
             <div className="mobile-menu__signout-div">
               <div className="mobile-menu__signout-container">
-                <p className="mobile-menu__signout-name">{username}</p>
+                <p className="mobile-menu__signout-name">
+                  {currentUser?.username}
+                </p>
                 <button
                   onClick={handleLogout}
                   className="mobile-menu__signout-btn"
