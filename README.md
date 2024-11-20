@@ -44,5 +44,4 @@ This project leverages a variety of modern web development tools and technologie
 
 - Add advanced filters (e.g., by publication date, author, etc.).
 - Enable offline access to saved articles.
-- Integrate additional APIs for richer content.
 - Backend: Powered by Express and Node.js, with MongoDB for persistent storage.
