@@ -1,7 +1,7 @@
 .saved-news__list {
   margin: 0;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
   flex-direction: row;
   gap: 14px;
@@ -11,8 +11,11 @@
   background-color: #f5f6f7;
 }
 
-@media screen and (max-width: 775px) {
-  .saved-cards {
+@media screen and (max-width: 850px) {
+  .saved-news__list {
+    padding-left: 38px;
+    padding-right: 38px;
+    margin-top: 32px;
     gap: 8px;
   }
 }
