@@ -11,6 +11,6 @@ export const getNews = (q, apiKey, from, to) => {
   // );
   // console.log(apiKey);
   return fetch(
-    `${baseUrl}?q=${q}&from=${from}&to=${to}&pageSize=100&apiKey=${apiKey}`
+    `${baseUrl}q=${q}&from=${from}&to=${to}&pageSize=100&apiKey=${apiKey}`
   ).then(checkServerResponse);
 };
