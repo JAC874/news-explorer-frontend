@@ -230,7 +230,7 @@ function App() {
     <CurrentUserContext.Provider value={userContext}>
       <UserArticleContext.Provider value={userArticleContext}>
         <div className="page">
-          <div className="page_content">
+          <div className="page__content">
             <Routes>
               <Route
                 path="/"

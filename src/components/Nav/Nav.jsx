@@ -19,7 +19,7 @@ function Nav({
 
   return (
     <nav className="nav" data-theme={isInverse ? "light" : "dark"}>
-      <p className="nav_logo">NewsExplorer</p>
+      <p className="nav__logo">NewsExplorer</p>
       <button
         onClick={toggleMobileMenu}
         className={

@@ -24,7 +24,7 @@
   border-bottom: var(--border);
 }
 
-.nav_logo {
+.nav__logo {
   border: none;
   margin: 0;
   font-family: "RobotoSlab-Bold", Arial, sans-serif;
