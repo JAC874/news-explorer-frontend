@@ -85,7 +85,7 @@ function NewsCardList({
         <h2 className="news-card-list__title">Search results</h2>
       )}
       <div className="news-card-list__container">
-        <ul className="news-card-list__list">
+        <div className="news-card-list__list">
           {activeNewsDataItems.map((article, index) => (
             <NewsCard
               key={index}
@@ -95,7 +95,7 @@ function NewsCardList({
               handleSaveArticle={handleSaveArticle}
             />
           ))}
-        </ul>
+        </div>
         {activeNewsDataLength < filteredNewsData.length && (
           <div className="news-card-list__more-btn-container">
             <button
