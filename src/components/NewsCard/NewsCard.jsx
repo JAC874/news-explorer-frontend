@@ -39,6 +39,7 @@ function NewsCard({
   };
 
   const handleDeleteClick = () => {
+    console.log("Deleting article with link:", article.link); // Log the link passed
     handleDeleteArticle(article.link);
   };
 
