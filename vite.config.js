@@ -5,8 +5,10 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/news-explorer-frontend/",
-  // add the server object
   server: {
     port: 3000,
+  },
+  build: {
+    outDir: "dist", // Make sure the build output is correct
   },
 });

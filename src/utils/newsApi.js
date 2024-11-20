@@ -1,5 +1,7 @@
 import { checkServerResponse } from "./Api";
-const baseUrl = "https://newsapi.org/v2/everything";
+// const baseUrl = "https://newsapi.org/v2/everything";
+
+import { baseUrl } from "./Api";
 
 export const getNews = (q, apiKey, from, to) => {
   // console.log("is this running");
