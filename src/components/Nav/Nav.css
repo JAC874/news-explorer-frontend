@@ -52,7 +52,7 @@
 }
 
 .nav__link {
-  font-family: "Roboto-Bold";
+  font-family: "Roboto-Bold", Arial, sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
@@ -87,7 +87,7 @@
 }
 
 .nav__signout-name {
-  font-family: "Roboto-Regular";
+  font-family: "Roboto-Regular", Arial, sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
@@ -115,7 +115,7 @@
   height: 48px;
   border-radius: 100px;
   background: none;
-  font-family: "Roboto-Bold";
+  font-family: "Roboto-Bold", Arial, sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
@@ -130,7 +130,6 @@
 .nav__signin-btn:hover {
   cursor: pointer;
 }
-
 
 @media screen and (max-width: 770px) {
   .nav__link {
