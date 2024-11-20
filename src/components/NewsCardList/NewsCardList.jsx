@@ -81,7 +81,9 @@ function NewsCardList({
           Searching for news...
         </h3>
       </div>
-      <h2 className="news-card-list__title">Search results</h2>
+      {filteredNewsData.length > 0 && (
+        <h2 className="news-card-list__title">Search results</h2>
+      )}
       <div className="news-card-list__container">
         <ul className="news-card-list__list">
           {activeNewsDataItems.map((article, index) => (
@@ -94,12 +96,17 @@ function NewsCardList({
             />
           ))}
         </ul>
+        {activeNewsDataLength < filteredNewsData.length && (
+          <div className="news-card-list__more-btn-container">
+            <button
+              onClick={handleOnClick}
+              className="news-card-list__more-btn"
+            >
+              Show more
+            </button>
+          </div>
+        )}
       </div>
-      {activeNewsDataLength < filteredNewsData.length && (
-        <button onClick={handleOnClick} className="news-card-list__more-btn">
-          Show more
-        </button>
-      )}
     </section>
   );
 }

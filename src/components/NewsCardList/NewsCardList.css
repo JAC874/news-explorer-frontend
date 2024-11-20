@@ -1,6 +1,6 @@
 .news-card-list {
   background-color: #f5f6f7;
-  padding-bottom: 80px;
+  /* padding-bottom: 80px; */
   margin: 0 auto;
 }
 
@@ -11,7 +11,7 @@
 .news-card-list__list {
   margin: 0;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-wrap: wrap;
   flex-direction: row;
   gap: 14px;
@@ -32,10 +32,12 @@
   text-align: left;
 }
 
+.news-card-list__more-btn-container {
+  padding-bottom: 80px;
+}
 .news-card-list__more-btn {
   display: block;
-  margin: auto;
-  margin-top: 64px;
+  margin: 64px auto 0;
   height: 64px;
   width: 288px;
   border-radius: 80px;
